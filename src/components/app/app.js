@@ -7,14 +7,20 @@ import RandomPlanet from '../random-planet';
 
 import './app.css';
 import PeoplePage from '../pages';
+import SwapiService from '../../services/swapi-service';
+import { Provider } from '../swapi-context';
+
+const swapi = new SwapiService()
 
 const App = () => {
   return (
     <div>
-      <Header />
-      <RandomPlanet />
-
-      <PeoplePage/>
+      <Provider value={swapi}>
+          <Header />
+          <RandomPlanet />
+          <PeoplePage/>
+      </Provider>
+    
 
       {/* <div className="row mb2">
         <div className="col-md-6">

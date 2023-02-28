@@ -1,10 +1,12 @@
-import React, {  useEffect, useState } from 'react';
+import React, {  useEffect, useState, useContext } from 'react';
 import './item-list.css';
 import SwapiService from '../../services/swapi-service';
+import { Consumer } from '../swapi-context';
 
 const ItemList = ({setItemId})=> {
   const [state, setState] = useState({data: []})
   const swapi = new SwapiService()
+  // const swapi =  useContext(Consumer)
  
   useEffect(() => {
     swapi.getAllPeople()
@@ -14,7 +16,7 @@ const ItemList = ({setItemId})=> {
 //js-array
 const content = state.data.map(item => {
   return ( 
-  <li onClick={() => setItemId(item.id)} className="list-group-item">
+  <li key={item.id} onClick={() => setItemId(item.id)} className="list-group-item">
     {item.name}
     </li>
   )
@@ -23,7 +25,7 @@ const content = state.data.map(item => {
     <ul className="item-list list-group">
 
             {content}
-          </ul>
+       </ul>
   )
 }
 

@@ -2,12 +2,23 @@ import React,{useState} from 'react'
 import ItemDetails from '../item-details';
 import ItemList from '../item-list';
 import Row from '../row';
+import withSwapi from '../hoc';
+
+
 
 const PeoplePage = () => {
 const [state, setState] = useState({itemId: 1})
 
-    const leftElement = <ItemList setItemId={(id) => setState({itemId: id})}/>
-    const rightElement = <ItemDetails itemId={state.itemId}/>
+
+const NewItemList = withSwapi(ItemList)
+const NewItemDetails = withSwapi(ItemDetails)
+
+
+
+
+
+    const leftElement = <NewItemList setItemId={(id) => setState({itemId: id})}/>
+    const rightElement = <NewItemDetails itemId={state.itemId}/>
 
 
 
@@ -22,6 +33,7 @@ const [state, setState] = useState({itemId: 1})
 //   </div>
 
     <Row left={leftElement} right={rightElement} />
+    // <Row left={leftElement}  />
   )
 }
 
